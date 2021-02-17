@@ -8,8 +8,10 @@ from sklearn.metrics import f1_score, roc_auc_score
 from joblib import Parallel, delayed
 import weighted_gflasso
 
+
 powers_lmbd = list(range(-10, 14, 1))
 powers_thres = list(range(-10, 14, 1))
+
 
 def plot_series(X, M, Y, lmbd, p, mode, img_path):
     fig, axs = plt.subplots(X.shape[1], sharex=True)
@@ -88,9 +90,12 @@ def plot_labels(score, pred, true, thres, lmbd, p, mode, img_path):
 
 if __name__ == "__main__":
     cwd = os.getcwd()
-    arm_dir = os.path.join(cwd, 'pose_features/arm')
-    label_dir = os.path.join(cwd, 'labels')
-    save_dir = os.path.join(cwd, 'results')
+    arm_dir = os.path.join(cwd, 'kaggle/pose_features')
+    label_dir = os.path.join(cwd, 'kaggle/labels')
+    results_dir = os.path.join(cwd, 'results')
+    if not os.path.exists(results_dir):
+        os.makedirs(results_dir)
+    save_dir = os.path.join(cwd, 'results/kaggle')
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
