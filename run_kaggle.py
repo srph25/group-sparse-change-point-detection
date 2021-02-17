@@ -167,7 +167,7 @@ if __name__ == "__main__":
                 for weighted in [True, False]:
                     for p in [1, 2]:
                         print('    lambda=', lmbd, ', weighted=', weighted, ', p=', p)
-                        print('        ROC AUC=', roc_auc_lmbd[(lmbd, weighted, p)])#,
+                        print('        ROC AUC=', roc_auc_lmbd[(lmbd, weighted, p)])
                         for power_thres in powers_thres:
                             thres = 2**power_thres
                             print('        thres=', thres, ', F1=', f1_lmbd[(lmbd, weighted, p, thres)])

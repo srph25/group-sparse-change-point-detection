@@ -11,7 +11,7 @@ import weighted_gflasso
 
 
 np.random.seed(1234)
-m = 10#100 # series
+m = 50 # series
 n = 500 # time steps
 d = 3 # features
 p = 4 # steps
@@ -68,7 +68,7 @@ def plot_labels(score, pred, true, thres, lmbd, p, mode, img_path):
             title += 'Group '
         title += 'Fused LASSO Denoising, ' + r'$\lambda={{{}}}$'.format(lmbd)
         fig.suptitle(title)
-        ylabel = 'Output Euclidean Norm [Pixel Indices]'
+        ylabel = 'Output Euclidean Norm [Dimensionless]'
         label = "Norm of gross-but-"
         if p == 2:
             label += "group-"
@@ -176,7 +176,7 @@ if __name__ == "__main__":
             for weighted in [True, False]:
                 for p in [1, 2]:
                     print('    lambda=', lmbd, ', weighted=', weighted, ', p=', p)
-                    print('        ROC AUC=', roc_auc_lmbd[(lmbd, weighted, p)])#,
+                    print('        ROC AUC=', roc_auc_lmbd[(lmbd, weighted, p)])
                     for power_thres in powers_thres:
                         thres = 2**power_thres
                         print('        thres=', thres, ', F1=', f1_lmbd[(lmbd, weighted, p, thres)])
