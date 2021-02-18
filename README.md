@@ -31,5 +31,5 @@ kaggle/ : arm pose coordinates extracted by [Convolutional Pose Machine Neural N
 results/ : experimental results will be saved to this directory with numpy\
 run_kaggle.py : conduct experiment on the Kaggle State Farm arm pose data set\
 run_toy.py : conduct experiment on the artificially generated piecewise constant toy data set\
-weighted_gflasso: our group sparsity based change-point method implemented in CVXPY.
+weighted_gflasso: our group sparsity based change-point detection method implemented in CVXPY.
 
