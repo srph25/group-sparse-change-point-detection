@@ -33,3 +33,7 @@ run_kaggle.py : conduct experiment on the Kaggle State Farm arm pose data set\
 run_toy.py : conduct experiment on the artificially generated piecewise constant toy data set\
 weighted_gflasso: our group sparsity based change-point detection method implemented in CVXPY.
 
+
+### Contact:
+In case of any questions, feel free to create an issue here on GitHub, or mail me at [srph25@gmail.com](mailto:srph25@gmail.com).
+
