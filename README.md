@@ -1,6 +1,7 @@
 # Group Sparse Change-Point Detection (part of: Towards Reasoning Based Representations: Deep Consistence Seeking Machine)
 ## Python source code for reproducing the change-point detection experiments described in the paper
-[Paper](https://www.researchgate.net/profile/Andras_Loerincz/publication/319401024_Towards_Reasoning_Based_Representations_Deep_Consistence_Seeking_Machine/links/59d7c6490f7e9b12b36123c7/Towards-Reasoning-Based-Representations-Deep-Consistence-Seeking-Machine.pdf)\
+[Paper (.pdf)](https://www.researchgate.net/profile/Andras_Loerincz/publication/319401024_Towards_Reasoning_Based_Representations_Deep_Consistence_Seeking_Machine/links/59d7c6490f7e9b12b36123c7/Towards-Reasoning-Based-Representations-Deep-Consistence-Seeking-Machine.pdf)\
+\
 Code is mostly self-explanatory via file, variable and function names; but more complex lines are commented.\
 Designed to require minimal setup overhead.\
 Note: current version contains some code duplications, I may refactor this later for better reusability.
@@ -32,6 +33,20 @@ results/ : experimental results will be saved to this directory with numpy\
 run_kaggle.py : conduct experiment on the Kaggle State Farm arm pose data set\
 run_toy.py : conduct experiment on the artificially generated piecewise constant toy data set\
 weighted_gflasso: our group sparsity based change-point detection method implemented in CVXPY.
+
+
+### Citation:
+```latex
+@article{lHorincz2018towards,
+  title={Towards reasoning based representations: Deep consistence seeking machine},
+  author={L{\H{o}}rincz, A and Cs{\'a}kv{\'a}ri, M{\'a}t{\'e} and F{\'o}thi, {\'A}ron and Milacski, Zolt{\'a}n {\'A}d{\'a}m and S{\'a}rk{\'a}ny, Andr{\'a}s and T{\H{o}}s{\'e}r, Z},
+  journal={Cognitive Systems Research},
+  volume={47},
+  pages={92--108},
+  year={2018},
+  publisher={Elsevier}
+}
+```
 
 
 ### Contact:
