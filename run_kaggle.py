@@ -3,10 +3,12 @@ import numpy as np
 import matplotlib as mpl
 #mpl.use('Agg') 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FormatStrFormatter
 import gc
 from sklearn.metrics import f1_score, roc_auc_score
 from joblib import Parallel, delayed
 import weighted_gflasso
+
 
 
 powers_lmbd = list(range(-10, 14, 1))
@@ -33,6 +35,7 @@ def plot_series(X, M, Y, lmbd, p, mode, img_path):
             axs[i].plot(Y[:, i], 'r-', label="Output")
         else:
             axs[i].plot(M[:, i], 'g-', label="Input Weights")
+            axs[i].yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
     fig.add_subplot(111, frameon=False)
     # hide tick and tick label of the big axis
     plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
