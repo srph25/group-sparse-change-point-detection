@@ -38,7 +38,7 @@ def plot_series(X, M, Y, lmbd, p, mode, img_path):
             axs[i].plot(X[:, i], 'b-', label="Input")
             axs[i].plot(Y[:, i], 'r-', label="Output")
         else:
-            axs[i].plot(M[:, i], 'g-', label="Input Weights")
+            axs[i].plot(M[:, i], '-', color='black', label="Input Weights")
     fig.add_subplot(111, frameon=False)
     # hide tick and tick label of the big axis
     plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
@@ -73,7 +73,7 @@ def plot_labels(score, pred, true, thres, lmbd, p, mode, img_path):
         if p == 2:
             label += "group-"
         label += "sparse first derivative"
-        ax.plot(np.arange(len(score)), score, 'b-', label=label)
+        ax.plot(np.arange(len(score)), score, 'r-', label=label)
         ax.plot(np.arange(len(score)), thres * np.ones_like(score), 'r--', label="Threshold for predicted change-point label")
         for idx, t in enumerate(np.where(true == 1)[0]):
             if idx == 0:
