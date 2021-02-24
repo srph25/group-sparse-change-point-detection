@@ -19,33 +19,59 @@ powers_lmbd = list(range(-10, 14, 1))
 powers_thres = list(range(-10, 14, 1))
 
 
+SMALL_SIZE = 14
+MEDIUM_SIZE = 16
+BIGGER_SIZE = 18
+
+
 def plot_series(X, M, Y, lmbd, p, mode, img_path):
     fig, axs = plt.subplots(X.shape[1], sharex=True)
+    title = 'Toy Data Set Example\n'
     if mode in ['weighted', 'unweighted']:
-        title = ''
         if mode == 'weighted':
             title += 'Weighted '
         if p == 2:
             title += 'Group '
-        title += 'Fused LASSO Denoising\n' + r'$\lambda={{{}}}$'.format(lmbd)
-        fig.suptitle(title)
+        title += 'Fused LASSO, ' + r'$\lambda={{{}}}$'.format(lmbd)
         ylabel = 'Features [Dimensionless]'
     elif mode == 'weights':
-        fig.suptitle('Weights')
+        title += 'Input Weights'
         ylabel = 'Weights [Dimensionless]'
+    fig.suptitle(title, y=1.0005)
     for i in range(X.shape[1]):
-        if mode in ['weighted', 'unweighted']:
-            axs[i].plot(X[:, i], 'b-', label="Input")
-            axs[i].plot(Y[:, i], 'r-', label="Output")
+        if i == 0:
+            if mode in ['weighted', 'unweighted']:
+                axs[i].plot(X[:, i], 'b-', label="Input")
+                axs[i].plot(Y[:, i], 'r-', label="Output")
+            else:
+                axs[i].plot(M[:, i], '-', color='black', label="Input Weights")
         else:
-            axs[i].plot(M[:, i], '-', color='black', label="Input Weights")
+            if mode in ['weighted', 'unweighted']:
+                axs[i].plot(X[:, i], 'b-', label='_nolegend_')
+                axs[i].plot(Y[:, i], 'r-', label='_nolegend_')
+            else:
+                axs[i].plot(M[:, i], '-', color='black', label='_nolegend_')
     fig.add_subplot(111, frameon=False)
     # hide tick and tick label of the big axis
     plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
     plt.xlabel("Time [Index]")
+    gca = plt.gca()
+    gca.xaxis.set_label_coords(0.5, -0.085)
     plt.ylabel(ylabel)
-    axs[0].legend(loc="upper right")
+    if mode in ['weighted', 'unweighted']:
+        fig.legend(loc=(0.67, 0.73))
+    else:
+        fig.legend(loc=(0.57, 0.8025))
     #plt.show()
+
+    plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+    plt.rc('axes', titlesize=SMALL_SIZE)     # fontsize of the axes title
+    plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+    plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+    plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+    plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
+    plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+
     fig.savefig(img_path, dpi=600)
     #fig.clear()
     plt.close(fig)
@@ -58,35 +84,34 @@ def plot_labels(score, pred, true, thres, lmbd, p, mode, img_path):
         pass
     elif mode in ['weighted', 'unweighted']:
         fig, ax = plt.subplots(1, sharex=True)
-        title = 'Output Gross-but-'
-        if p == 2:
-            title += 'Group-'
-        title += 'Sparse Norm Values\n of '
-        if mode == 'weighted':
-            title += 'Weighted '
-        if p == 2:
-            title += 'Group '
-        title += 'Fused LASSO Denoising, ' + r'$\lambda={{{}}}$'.format(lmbd)
-        fig.suptitle(title)
+        title = 'Toy Data Set Example\nOutput Change-point Scores'
+        fig.suptitle(title, y=1.0005)
         ylabel = 'Output Euclidean Norm [Dimensionless]'
-        label = "Norm of gross-but-"
-        if p == 2:
-            label += "group-"
-        label += "sparse first derivative"
-        ax.plot(np.arange(len(score)), score, 'r-', label=label)
-        ax.plot(np.arange(len(score)), thres * np.ones_like(score), 'r--', label="Threshold for predicted change-point label")
+        ax.plot(np.arange(len(score)), score, 'r-', label="Norm of first derivative")
+        ax.plot(np.arange(len(score)), thres * np.ones_like(score), 'r--', label="Threshold")
         for idx, t in enumerate(np.where(true == 1)[0]):
             if idx == 0:
-                ax.plot(t, 0, 'g.', markersize=14, label="Ground truth logged time of change-point")
+                ax.plot(t, 0, 'g.', markersize=14, label="Ground truth change-point")
             else:
                 ax.plot(t, 0, 'g.', markersize=14, label='_nolegend_')
         fig.add_subplot(111, frameon=False)
         # hide tick and tick label of the big axis
         plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
         plt.xlabel("Time [Index]")
+        gca = plt.gca()
+        gca.xaxis.set_label_coords(0.5, -0.085)
         plt.ylabel(ylabel)
-        ax.legend(loc="upper right")
+        ax.legend(loc=(0.3, 0.72))
         #plt.show()
+
+        plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+        plt.rc('axes', titlesize=SMALL_SIZE)     # fontsize of the axes title
+        plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+        plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+        plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+        plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
+        plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+
         fig.savefig(img_path, dpi=600)
         #fig.clear()
         plt.close(fig)
